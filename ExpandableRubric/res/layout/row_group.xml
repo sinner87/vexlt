@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:gravity="center" >
+    
+<ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/navigation_forward" />
+    
+    <View
+        android:layout_width="@dimen/separator_width"
+        android:layout_height="@dimen/separator_height"
+        android:background="#AAAAAAAA" />
+
+<RelativeLayout 
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:gravity="bottom" >
+    
+    
+    
+  <TextView
+        android:id="@+id/item_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="main"
+        android:paddingLeft="@dimen/padding_medium"
+        android:textIsSelectable="true"
+         />
+
+    <TextView
+        android:id="@+id/item_count_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/item_text"
+        android:paddingLeft="@dimen/padding_medium"
+        android:text="@string/str_count_description"
+        android:textIsSelectable="true" />
+
+    <TextView
+        android:id="@+id/item_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/item_count_description"
+        android:layout_alignBottom="@+id/item_count_description"
+        android:layout_toRightOf="@+id/item_count_description"
+        android:paddingLeft="@dimen/padding_medium"
+        android:text="8"
+        android:textIsSelectable="true" />
+
+</RelativeLayout>
+    
+    <View
+        android:layout_width="@dimen/separator_width"
+        android:layout_height="@dimen/separator_height"
+        android:background="#AAAAAAAA" />
+
+    <ImageButton
+        android:id="@+id/imageButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:src="@drawable/navigation_forward" />
+
+</LinearLayout>
