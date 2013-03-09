@@ -14,10 +14,11 @@
         android:background="@color/back_item" />
     
     <ExpandableListView
-        android:id="@+id/expandableListView1"
+        android:id="@+id/ex_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:groupIndicator="@null" >
+        android:groupIndicator="@null"
+        android:animateLayoutChanges="true">
     </ExpandableListView>
 
 </LinearLayout>
