@@ -6,7 +6,7 @@
     android:gravity="center" >
     
 <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -15,7 +15,7 @@
     <View
         android:layout_width="@dimen/separator_width"
         android:layout_height="@dimen/separator_height"
-        android:background="#AAAAAAAA" />
+        android:background="@color/back_item" />
 
 <RelativeLayout 
     android:layout_width="wrap_content"
@@ -59,10 +59,10 @@
     <View
         android:layout_width="@dimen/separator_width"
         android:layout_height="@dimen/separator_height"
-        android:background="#AAAAAAAA" />
+        android:background="@color/back_item" />
 
     <ImageButton
-        android:id="@+id/imageButton1"
+        android:id="@+id/back_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"

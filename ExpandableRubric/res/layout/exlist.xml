@@ -4,6 +4,15 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
+    <include layout="@layout/head_group_list"/>
+    
+        <View
+        android:layout_marginLeft="@dimen/padding_large"
+        android:layout_marginRight="@dimen/padding_large"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/separator_width"
+        android:background="@color/back_item" />
+    
     <ExpandableListView
         android:id="@+id/expandableListView1"
         android:layout_width="match_parent"

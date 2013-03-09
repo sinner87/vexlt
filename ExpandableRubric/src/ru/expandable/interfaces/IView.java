@@ -9,4 +9,6 @@ public interface IView {
 
 	void stopWaitDialog();
 
+	void onStart();
+
 }
