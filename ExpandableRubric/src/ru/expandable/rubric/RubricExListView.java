@@ -1,13 +1,7 @@
 package ru.expandable.rubric;
 
 import android.app.Activity;
-import android.content.Context;
-import android.database.DataSetObserver;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseExpandableListAdapter;
-import android.widget.Button;
-import android.widget.ExpandableListAdapter;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import ru.expandable.interfaces.IPresenter;
@@ -49,7 +43,7 @@ public class RubricExListView implements IView {
 		NetLog.i("IView onStart");
 		
 		
-		ImageButton back = (ImageButton) activity.findViewById(R.id.back_button);
+		ImageButton back = (ImageButton) activity.findViewById(R.id.arrow);
 		back.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
@@ -59,7 +53,7 @@ public class RubricExListView implements IView {
 		});
 		
 		ExpandableListView ex_list = (ExpandableListView) activity.findViewById(R.id.ex_list);
-		// TODO: ex_list.setAdapter( );
+		ex_list.setAdapter( new RubricAdapter (presenter.getRubricBloc(),activity) );
 	}
 
 }

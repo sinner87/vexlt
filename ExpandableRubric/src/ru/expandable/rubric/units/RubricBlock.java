@@ -22,4 +22,9 @@ public class RubricBlock {
 		return groups.get(groupPosition);
 	}
 
+
+	public void add(RubricGroup g) {
+		groups.add(g);
+	}
+
 }

@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
     android:orientation="horizontal"
     android:gravity="center" >
     
 <ImageButton
-        android:id="@+id/back_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@android:color/transparent"
-        android:src="@drawable/navigation_forward" />
+    android:id="@+id/group_icon"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@android:color/transparent"
+    android:src="@drawable/navigation_expand" />
     
     <View
         android:layout_width="@dimen/separator_width"
@@ -62,10 +62,10 @@
         android:background="@color/back_item" />
 
     <ImageButton
-        android:id="@+id/back_button"
+        android:id="@+id/expand_arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
-        android:src="@drawable/navigation_forward" />
+        android:src="@drawable/navigation_expand" />
 
 </LinearLayout>
