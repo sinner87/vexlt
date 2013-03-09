@@ -72,7 +72,15 @@ public class ExListRubric extends Activity implements IPresenter {
 		g2.add( new RubricItem(47, "classic", "none", 3, 3));
 		
 		block.add ( g2 );
+		block.add ( g );
 		
+		RubricGroup g3 = new RubricGroup(105,"Films","none",27,1);
+		g3.add( new RubricItem(59, "horror", "none", 15, 1));
+		g3.add( new RubricItem(58, "comedy", "none", 4, 2));
+		g3.add( new RubricItem(57, "triller", "none", 2, 3));
+		g3.add( new RubricItem(56, "documental", "none", 6, 3));
+		
+		block.add ( g3 );
 		
 		return block;
 	}
