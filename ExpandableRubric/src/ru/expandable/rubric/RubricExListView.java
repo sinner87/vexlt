@@ -2,8 +2,12 @@ package ru.expandable.rubric;
 
 import android.app.Activity;
 import android.content.Context;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageButton;
 import ru.expandable.interfaces.IPresenter;
 import ru.expandable.interfaces.IView;
+import ru.expandable.util.NetLog;
 
 public class RubricExListView implements IView {
 
@@ -37,8 +41,18 @@ public class RubricExListView implements IView {
  */
 	@Override
 	public void onStart() {
+		activity.setContentView(R.layout.exlist);
+		NetLog.i("IView onStart");
 		
-		activity.setContentView(R.layout.)
+		
+		ImageButton back = (ImageButton) activity.findViewById(R.id.back_button);
+		back.setOnClickListener( new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				activity.finish();
+			}
+		});
 	}
 
 }

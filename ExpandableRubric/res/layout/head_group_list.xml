@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:src="@drawable/navigation_previous_item"
+        android:src="@drawable/back_button_selector"
         android:background="@android:color/transparent" />
 
     <ImageView

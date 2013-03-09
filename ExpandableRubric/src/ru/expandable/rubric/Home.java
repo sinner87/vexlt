@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 import android.app.Activity;
+import android.content.Intent;
 
 public class Home extends Activity {
 
@@ -18,7 +19,8 @@ public class Home extends Activity {
 			
 			@Override
 			public void onClick(View v) {
-				
+				Intent i = new Intent(getApplicationContext(), ExListRubric.class);
+				startActivity(i);
 			}
 		});
 	}
