@@ -1,6 +1,7 @@
 package ru.expandable.rubric.units;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import ru.expandable.interfaces.IRubric;
 
@@ -30,6 +31,10 @@ public class RubricGroup extends RubricItem {
 
 	public int size() {
 		return items.size();
+	}
+	
+	public void sort () {
+		Collections.sort(items);
 	}
 	
 }

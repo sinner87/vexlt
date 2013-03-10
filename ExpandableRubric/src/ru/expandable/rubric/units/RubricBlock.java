@@ -1,6 +1,7 @@
 package ru.expandable.rubric.units;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import ru.expandable.interfaces.IRubric;
 
@@ -14,11 +15,10 @@ public class RubricBlock {
 
 
 	public int size() {
-		// TODO Auto-generated method stub
 		return groups.size();
 	}
 
-	public RubricGroup getGroup(int groupPosition) {
+	public RubricGroup get(int groupPosition) {
 		return groups.get(groupPosition);
 	}
 
@@ -26,5 +26,13 @@ public class RubricBlock {
 	public void add(RubricGroup g) {
 		groups.add(g);
 	}
-
+	
+	public void sort () {
+		
+		Collections.sort(groups);
+		
+		for (RubricGroup r : groups) {
+			r.sort();
+		}
+	}
 }

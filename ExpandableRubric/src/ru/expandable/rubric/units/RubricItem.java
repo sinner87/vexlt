@@ -4,7 +4,7 @@ import ru.expandable.interfaces.IRubric;
 
 
 
-public class RubricItem implements Comparable<RubricItem>, IRubric {
+public class RubricItem implements  IRubric {
 
 	
 	public RubricItem(int id, String full_name, String short_name, int count,
@@ -41,8 +41,15 @@ public class RubricItem implements Comparable<RubricItem>, IRubric {
 		return short_name;
 	}
 	@Override
-	public int compareTo(RubricItem r) {
-		return this.sort-r.sort;
+	public int compareTo(IRubric r) {
+		return this.sort-r.getSort();
 	}
+
+	@Override
+	public int getSort() {
+		return sort;
+	}
+
+
 	
 }

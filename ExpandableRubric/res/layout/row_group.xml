@@ -29,7 +29,7 @@
         android:id="@+id/item_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="main"
+        android:textSize="@dimen/font_bold"
         android:paddingLeft="@dimen/padding_medium"
         android:textIsSelectable="true"
          />
@@ -52,7 +52,7 @@
         android:layout_alignBottom="@+id/item_count_description"
         android:layout_toRightOf="@+id/item_count_description"
         android:paddingLeft="@dimen/padding_medium"
-        android:text="8"
+        android:textSize="@dimen/font_normal"
         android:textIsSelectable="true" />
 
 </RelativeLayout>

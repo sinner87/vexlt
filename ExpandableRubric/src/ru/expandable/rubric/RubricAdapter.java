@@ -1,9 +1,12 @@
 package ru.expandable.rubric;
 
+import java.util.TreeMap;
+
 import ru.expandable.interfaces.IRubric;
 import ru.expandable.rubric.units.RubricBlock;
 import ru.expandable.util.NetLog;
 import android.app.Activity;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,7 +55,9 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 			view = inflater.inflate(R.layout.row_item, null);
 			ViewHolder holder = new ViewHolder();
 			holder.title = (TextView) view.findViewById(R.id.item_text);
+			holder.title.setTypeface(getFont("roboto_bold_condenced.ttf"));
 			holder.count = (TextView) view.findViewById(R.id.item_count);
+			holder.count.setTypeface(getFont("roboto_condenced.ttf"));
 			holder.arrow = (ImageView) view.findViewById(R.id.arrow);
 			
 			view.setTag(holder);
@@ -60,7 +65,7 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 		
 		
 		ViewHolder holder = (ViewHolder) view.getTag();
-		final IRubric rubric = block.getGroup(groupPosition).get(childPosition);
+		final IRubric rubric = block.get(groupPosition).get(childPosition);
 		
 		holder.title.setText(rubric.getFull_name());
 		holder.count.setText(Integer.toString(rubric.getCount()));
@@ -79,12 +84,12 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public int getChildrenCount(int groupPosition) {
-		return block.getGroup(groupPosition).size();
+		return block.get(groupPosition).size();
 	}
 
 	@Override
 	public Object getGroup(int groupPosition) {
-		return block.getGroup(groupPosition);
+		return block.get(groupPosition);
 	}
 
 	@Override
@@ -94,7 +99,7 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 
 	@Override
 	public long getGroupId(int groupPosition) {
-		return block.getGroup(groupPosition).getId();
+		return block.get(groupPosition).getId();
 	}
 
 	@Override
@@ -108,7 +113,9 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 			view = inflater.inflate(R.layout.row_group, null);
 			ViewHolder holder = new ViewHolder();
 			holder.title = (TextView) view.findViewById(R.id.item_text);
+			holder.title.setTypeface(getFont("roboto_bold_condenced.ttf"));
 			holder.count = (TextView) view.findViewById(R.id.item_count);
+			holder.count.setTypeface(getFont("roboto_condenced.ttf"));
 			holder.icon =  (ImageView) view.findViewById(R.id.group_icon);
 			holder.arrow = (ImageView) view.findViewById(R.id.expand_arrow);
 			
@@ -117,11 +124,11 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 		
 		
 		ViewHolder holder = (ViewHolder) view.getTag();
-		final IRubric rubric = block.getGroup(groupPosition);
+		final IRubric rubric = block.get(groupPosition);
 		
 		holder.title.setText(rubric.getFull_name());
 		holder.count.setText(Integer.toString(rubric.getCount()));
-		holder.arrow.setImageResource(isExpanded?R.drawable.navigation_expand:R.drawable.navigation_collapse);
+		holder.arrow.setImageResource(isExpanded?R.drawable.navigation_collapse:R.drawable.navigation_expand);
 		
 		holder.arrow.setOnClickListener( new View.OnClickListener() {
 			
@@ -162,6 +169,29 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 	@Override
 	public boolean isChildSelectable(int groupPosition, int childPosition) {
 		return true;
+	}
+	
+	private TreeMap<String, Typeface> preload_fonts = new TreeMap<String, Typeface>();
+	
+	private Typeface getFont (String name) {
+		
+		Typeface tf = null;
+		tf = preload_fonts.get(name);
+		if( tf != null )
+			return tf;
+
+		try {
+			
+			tf = Typeface.createFromAsset(activity.getAssets(), "fonts/"+name);
+			preload_fonts.put(name, tf);
+			
+		} catch (Exception e) {
+			NetLog.e("Could not get typeface (%s)", e);
+			e.printStackTrace();
+		}
+		
+		return tf;
+	        
 	}
 
 }

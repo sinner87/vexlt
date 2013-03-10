@@ -14,6 +14,7 @@
         android:paddingLeft="@dimen/padding_medium"
         android:textIsSelectable="true"
         android:layout_marginLeft="@dimen/padding_large"
+        android:textSize="@dimen/font_bold"
          />
 
     <TextView
@@ -22,6 +23,7 @@
         android:layout_height="wrap_content"
         android:paddingRight="@dimen/padding_medium"
         android:textIsSelectable="true"
+        android:textSize="@dimen/font_normal"
          />
     
     <View
