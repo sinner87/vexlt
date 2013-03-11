@@ -118,6 +118,8 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 			holder.count.setTypeface(getFont("roboto_condenced.ttf"));
 			holder.icon =  (ImageView) view.findViewById(R.id.group_icon);
 			holder.arrow = (ImageView) view.findViewById(R.id.expand_arrow);
+			TextView descr = (TextView) view.findViewById(R.id.item_count_description);
+			descr.setTypeface(getFont("roboto_condenced.ttf"));
 			
 			view.setTag(holder);
 		}

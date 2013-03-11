@@ -42,7 +42,8 @@
         android:layout_below="@+id/item_text"
         android:paddingLeft="@dimen/padding_medium"
         android:text="@string/str_count_description"
-        android:textIsSelectable="true" />
+        android:textIsSelectable="true"
+        android:textSize="@dimen/font_normal" />
 
     <TextView
         android:id="@+id/item_count"

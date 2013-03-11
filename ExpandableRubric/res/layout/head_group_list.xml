@@ -26,7 +26,8 @@
         android:layout_height="wrap_content"
         android:layout_alignBottom="@+id/imageView1"
         android:layout_alignLeft="@+id/head_title"
-        android:text="@string/str_rubric_description" />
+        android:text="@string/str_rubric_description"
+        android:textSize="@dimen/font_normal" />
 
     <TextView
         android:id="@+id/head_title"
@@ -34,6 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/head_sybtitle"
         android:layout_toRightOf="@+id/imageView1"
-        android:text="@string/str_rubric" />
+        android:text="@string/str_rubric"
+        android:textSize="@dimen/font_bold" />
 
 </RelativeLayout>
