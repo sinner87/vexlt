@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <string name="invalid_connection">Извините, произошла ошибка соединения с сервером. Пожалуйста, проверьте соединение с интернет.</string>
+	<string name="invalid_server_answer">Произошла ошибка при разборе ответа сервера.</string>
+	<string name="undefined_error">Произошла внутренняя ошибка .</string>
+    
     <string name="app_name">ExpandableRubric</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>

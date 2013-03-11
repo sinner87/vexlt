@@ -21,6 +21,17 @@ public class RubricGroup extends RubricItem {
 		new ArrayList<IRubric>(capacity);
 	}
 	
+	public RubricGroup(IRubric r) {
+		super( r.getId(),  r.getFull_name(), r.getShort_name() , r.getCount(), r.getSort());
+		items = new ArrayList<IRubric>();
+	}
+	
+	public RubricGroup(IRubric r, int capacity) {
+		super( r.getId(),  r.getFull_name(), r.getShort_name() , r.getCount(), r.getSort());
+		items = new ArrayList<IRubric>(capacity);
+	}
+	
+
 	public void add (IRubric r ) {
 		items.add(r);
 	}

@@ -58,6 +58,7 @@ public class ExListRubric extends Activity implements IPresenter {
 	public RubricBlock getRubricBloc() {
 		
 		RubricBlock block = testRubricBlock();
+		model.requestRubrics();
 		
 		return block;
 	}

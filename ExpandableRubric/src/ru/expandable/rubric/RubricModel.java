@@ -1,20 +1,32 @@
 package ru.expandable.rubric;
 
-import java.lang.Character.UnicodeBlock;
 import java.util.LinkedList;
 import java.util.List;
 
 
+import loc.org.json.JSONArray;
+import loc.org.json.JSONException;
+import loc.org.json.JSONObject;
+import android.accounts.NetworkErrorException;
 import android.content.Context;
+import android.os.AsyncTask;
 import ru.expandable.interfaces.IModel;
 import ru.expandable.interfaces.IRequestCompleteObserver;
+import ru.expandable.rubric.units.RubricBlock;
+import ru.expandable.rubric.units.RubricGroup;
+import ru.expandable.util.GatewayUtil;
 import ru.expandable.util.NetLog;
+import ru.expandable.util.Parser;
+import ru.expandable.util.RequestResult;
+import ru.expandable.util.RequestResult.Predefined;
 
 public class RubricModel implements IModel {
 
 	private volatile static RubricModel uniqueInstance;
 	private List<IRequestCompleteObserver> observers = new LinkedList<IRequestCompleteObserver>();
 	private Context context;
+	private AsyncTask<Void, Void, Void> uiTask;
+	protected RequestResult lastRequestResult;
 	
 	protected RubricModel(Context applicationContext) {
 		this.context = applicationContext;
@@ -39,7 +51,6 @@ public class RubricModel implements IModel {
 		
 	}
 
-
 	public void removeReqCompleteObserver(IRequestCompleteObserver obs) {
 		int i = observers.indexOf(obs);
 		if( i >= 0 )
@@ -50,7 +61,6 @@ public class RubricModel implements IModel {
 		NetLog.i("remove observer. Count:%d",observers.size());
 	}
 
-
 	public void notifyReqCompleteObservers() {
 		for (IRequestCompleteObserver cur : observers) {
 			cur.requestComplete();
@@ -58,4 +68,71 @@ public class RubricModel implements IModel {
 		
 	}
 
+	
+	public void requestRubrics () {
+		
+		final GatewayUtil gateway = new GatewayUtil(context);
+
+		
+		uiTask = new AsyncTask<Void, Void, Void> () {
+			private RequestResult lastRequestResult;
+
+			@Override
+			protected Void doInBackground(Void... params) {
+				
+				try {
+					
+						lastRequestResult = gateway.requestRubricsTest();
+						
+						int length = lastRequestResult.getResult().length();
+						JSONArray a = lastRequestResult.getResult();
+						
+						RubricBlock block = new RubricBlock();
+						
+						// parse block
+						for ( int i = 0; i < length; ++i ) {
+							JSONObject obj = a.getJSONObject(i);
+							
+							RubricGroup g = new RubricGroup ( Parser.parseIRubric ( obj ) );
+							
+							JSONArray categories = obj.getJSONArray("categories");
+							for ( int j = 0; j < categories.length(); ++j ) {
+								JSONObject item = categories.getJSONObject(i);
+								g.add ( Parser.parseIRubric ( item ) );
+							}
+							
+							block.add(g);
+						}
+					
+				} catch (JSONException e) {
+					NetLog.e("%s", e.toString());
+					e.printStackTrace();
+					this.lastRequestResult = RequestResult.createPredefinedResult(Predefined.INVALID_SERVER_ANSEWER, RubricModel.this.context);
+					
+				} catch ( NetworkErrorException e ) {
+					NetLog.e("%s", e.toString());
+					e.printStackTrace();
+					this.lastRequestResult = RequestResult.createPredefinedResult(Predefined.INVALID_CONNECTION, RubricModel.this.context);
+					
+				} catch ( Exception e ) {
+					NetLog.e("%s", e.toString());
+					e.printStackTrace();
+					this.lastRequestResult = RequestResult.createPredefinedResult(Predefined.UNDEFINED_ERROR, RubricModel.this.context);
+				}
+				
+				
+				return null;
+			}
+			
+			@Override
+			protected void onPostExecute(Void result) {
+				super.onPostExecute(result);
+				RubricModel.this.lastRequestResult = this.lastRequestResult;
+				notifyReqCompleteObservers();
+			}
+		};
+		
+		uiTask.execute();
+		
+	}
 }
