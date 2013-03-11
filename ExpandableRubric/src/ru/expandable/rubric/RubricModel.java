@@ -1,5 +1,6 @@
 package ru.expandable.rubric;
 
+import java.sql.Blob;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -27,6 +28,7 @@ public class RubricModel implements IModel {
 	private Context context;
 	private AsyncTask<Void, Void, Void> uiTask;
 	protected RequestResult lastRequestResult;
+	protected RubricBlock lastRubricBlock;
 	
 	protected RubricModel(Context applicationContext) {
 		this.context = applicationContext;
@@ -68,36 +70,40 @@ public class RubricModel implements IModel {
 		
 	}
 
+	@Override
+	public RequestResult getLastRequestResult () {
+		return lastRequestResult;
+	}
 	
 	public void requestRubrics () {
 		
 		final GatewayUtil gateway = new GatewayUtil(context);
 
-		
 		uiTask = new AsyncTask<Void, Void, Void> () {
+			
 			private RequestResult lastRequestResult;
-
+			private RubricBlock block = new RubricBlock();
+			
 			@Override
 			protected Void doInBackground(Void... params) {
 				
 				try {
 					
 						lastRequestResult = gateway.requestRubricsTest();
+						JSONArray groups = lastRequestResult.getResult();
 						
-						int length = lastRequestResult.getResult().length();
-						JSONArray a = lastRequestResult.getResult();
 						
-						RubricBlock block = new RubricBlock();
-						
-						// parse block
-						for ( int i = 0; i < length; ++i ) {
-							JSONObject obj = a.getJSONObject(i);
+						for ( int i = 0; i < groups.length(); ++i ) {
 							
+							JSONObject obj = groups.getJSONObject(i);
 							RubricGroup g = new RubricGroup ( Parser.parseIRubric ( obj ) );
 							
+							
 							JSONArray categories = obj.getJSONArray("categories");
+							
 							for ( int j = 0; j < categories.length(); ++j ) {
-								JSONObject item = categories.getJSONObject(i);
+								
+								JSONObject item = categories.getJSONObject(j);
 								g.add ( Parser.parseIRubric ( item ) );
 							}
 							
@@ -128,11 +134,17 @@ public class RubricModel implements IModel {
 			protected void onPostExecute(Void result) {
 				super.onPostExecute(result);
 				RubricModel.this.lastRequestResult = this.lastRequestResult;
+				RubricModel.this.lastRubricBlock = this.block;
 				notifyReqCompleteObservers();
 			}
 		};
 		
 		uiTask.execute();
 		
+	}
+
+	@Override
+	public RubricBlock getRubrics() {
+		return lastRubricBlock;
 	}
 }

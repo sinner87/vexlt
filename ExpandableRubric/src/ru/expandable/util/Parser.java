@@ -21,16 +21,16 @@ public class Parser {
 		
 		try {
 			
-			obj.getInt("id");
-			obj.getInt("sort");
-			obj.getInt("count");
+			id = obj.getInt("id");
+			sort = obj.getInt("sort");
+			count = obj.getInt("count");
 			
 			JSONObject name = obj.getJSONObject("name");
 			
-			name.getString("full");
+			name_full = name.getString("full");
 			
 			if( !name.isNull("short"))
-				name.getString("short");
+				name_short = name.getString("short");
 			
 		} catch (JSONException e) {
 			e.printStackTrace();

@@ -6,6 +6,7 @@ import ru.expandable.interfaces.IView;
 import ru.expandable.rubric.units.RubricBlock;
 import ru.expandable.rubric.units.RubricGroup;
 import ru.expandable.rubric.units.RubricItem;
+import ru.expandable.util.RequestResult;
 import android.app.Activity;
 import android.os.Bundle;
 
@@ -38,7 +39,19 @@ public class ExListRubric extends Activity implements IPresenter {
 
 	@Override
 	public void requestComplete() {
-		// TODO Auto-generated method stub
+		
+		view.stopWaitDialog();
+		
+		RequestResult r = model.getLastRequestResult();
+		
+		if( r.getResult() == null ) {
+			
+			view.printError(r.getErrortext());
+
+		} else {
+			view.updateExpandableList( model.getRubrics() );
+		}
+
 		
 	}
 
@@ -47,22 +60,12 @@ public class ExListRubric extends Activity implements IPresenter {
 		return this;
 	}
 
-	@Override
-	public void updateExpandableList() {
-		// TODO Auto-generated method stub
-		
-	}
-
 
 	@Override
-	public RubricBlock getRubricBloc() {
-		
-		RubricBlock block = testRubricBlock();
+	public void requestRubrics() {
+		view.beginWaitDialog(getString(R.string.load_rubrics));
 		model.requestRubrics();
-		
-		return block;
 	}
-
 
 	private RubricBlock testRubricBlock() {
 		RubricBlock block = new RubricBlock();
@@ -102,5 +105,8 @@ public class ExListRubric extends Activity implements IPresenter {
 		block.sort();
 		return block;
 	}
+
+
+	
 
 }

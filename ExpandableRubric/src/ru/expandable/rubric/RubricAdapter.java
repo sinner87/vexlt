@@ -73,7 +73,7 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 			
 			@Override
 			public void onClick(View v) {
-				NetLog.Toast(activity.getApplicationContext(), "item(%d,%d) - %s [%d]",
+				NetLog.Toast(activity.getApplicationContext(), "item(%d,%d) - %s [id:%d]",
 						groupPosition,childPosition, rubric.getFull_name(), rubric.getId());
 			}
 		});

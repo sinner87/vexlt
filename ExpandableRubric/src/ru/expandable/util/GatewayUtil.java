@@ -22,7 +22,9 @@ import android.content.Context;
 public class GatewayUtil {
 
 	private static final int POST_TIMEOUT = 10 * 1000;
-	public final static String GatewayHost = "http://api.dev.masterbiletov.ru/C826D6F3-5DD5-C154-8118-DD8ADF7A95FA/1.0/"; 
+
+	private static final String token = "355C84E8-5CEB-EC7D-F218-EDB07FB64ADD";
+	public final static String GatewayHost = "http://api.dev.masterbiletov.ru/"+token+"/1.0/"; 
 	private Context context;
 
 	public GatewayUtil ( Context c ) {

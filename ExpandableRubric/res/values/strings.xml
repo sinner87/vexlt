@@ -13,4 +13,7 @@
     <string name="str_rubric_description">Список всех рубрик и категорий</string>
     <string name="str_rubric">Рубрики</string>
     
+    <string name="attention">Внимание</string>
+    <string name="load_rubrics">Загрузка рубрик...</string>
+    
 </resources>

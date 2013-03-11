@@ -1,5 +1,7 @@
 package ru.expandable.interfaces;
 
+import ru.expandable.rubric.units.RubricBlock;
+
 
 public interface IView {
 
@@ -10,5 +12,7 @@ public interface IView {
 	void stopWaitDialog();
 
 	void onStart();
+
+	void updateExpandableList(RubricBlock rubrics);
 
 }
