@@ -23,7 +23,7 @@ public class GatewayUtil {
 
 	private static final int POST_TIMEOUT = 10 * 1000;
 
-	private static final String token = "355C84E8-5CEB-EC7D-F218-EDB07FB64ADD";
+	private static final String token = "355C84E8-5CEB-EC7D-F218-EDB07FB64ADD"; 
 	public final static String GatewayHost = "http://api.dev.masterbiletov.ru/"+token+"/1.0/"; 
 	private Context context;
 

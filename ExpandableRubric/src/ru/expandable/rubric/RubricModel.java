@@ -108,6 +108,7 @@ public class RubricModel implements IModel {
 							}
 							
 							block.add(g);
+							block.sort();
 						}
 					
 				} catch (JSONException e) {
