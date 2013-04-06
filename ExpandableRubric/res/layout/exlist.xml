@@ -18,7 +18,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:groupIndicator="@null"
-        android:animateLayoutChanges="true">
+        android:childIndicator="@null"
+        android:listSelector="@drawable/list_selector"
+        android:drawSelectorOnTop="true"
+        >
     </ExpandableListView>
 
 </LinearLayout>

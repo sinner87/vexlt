@@ -30,6 +30,7 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 	private Activity activity;
 	
 	public RubricAdapter ( RubricBlock block, Activity activity ) {
+		super();
 		this.block = block;
 		this.activity = activity;
 	}
@@ -59,6 +60,7 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 			holder.count = (TextView) view.findViewById(R.id.item_count);
 			holder.count.setTypeface(getFont("roboto_condenced.ttf"));
 			holder.arrow = (ImageView) view.findViewById(R.id.arrow);
+			holder.arrow.setFocusable(false);
 			
 			view.setTag(holder);
 		}
@@ -117,7 +119,9 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 			holder.count = (TextView) view.findViewById(R.id.item_count);
 			holder.count.setTypeface(getFont("roboto_condenced.ttf"));
 			holder.icon =  (ImageView) view.findViewById(R.id.group_icon);
+			holder.icon.setFocusable(false);
 			holder.arrow = (ImageView) view.findViewById(R.id.expand_arrow);
+			holder.arrow.setFocusable(false);
 			TextView descr = (TextView) view.findViewById(R.id.item_count_description);
 			descr.setTypeface(getFont("roboto_condenced.ttf"));
 			
@@ -132,6 +136,7 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 		holder.count.setText(Integer.toString(rubric.getCount()));
 		holder.arrow.setImageResource(isExpanded?R.drawable.navigation_collapse:R.drawable.navigation_expand);
 		
+		/*
 		holder.arrow.setOnClickListener( new View.OnClickListener() {
 			
 			@Override
@@ -145,7 +150,7 @@ public class RubricAdapter extends BaseExpandableListAdapter {
 					list.expandGroup(groupPosition);
 			}
 		});
-		
+		*/
 		
 		switch (rubric.getId()) {
 		case 103: holder.icon.setImageResource(R.drawable.r103); break;
