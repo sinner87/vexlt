@@ -1,8 +1,11 @@
 import java.awt.Dimension;
 import java.io.File;
 import java.io.FilenameFilter;
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.Iterator;
+
+import org.apache.commons.io.FileUtils;
 
 import ru.files.collection.FilesCollection;
 import ru.files.image.util.Utils;
@@ -36,6 +39,13 @@ public class Main {
 		
 			Dimension dimension = Utils.getImageDim(image);
 			System.out.println(String.format(" %s - %dx%d ", image.getName(), dimension.width, dimension.height));
+			
+			
+			try {
+			    FileUtils.copyFile(image,new File("D:\\temp\\33\\"+image.getName()));
+			} catch (IOException e) {
+			    e.printStackTrace();
+			}
 			
 		}
 		
